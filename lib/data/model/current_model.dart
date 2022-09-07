@@ -15,7 +15,7 @@ class CurrentModel extends Current {
           tempC: json['temp_c'],
           condition: ConditionModel.fromJson(json['condition']),
           windKph: json['wind_kph'],
-          humidity: json['humidity'],
+          humidity: json['humidity'].toDouble(),
           feelsLikeC: json['feelslike_c'],
           uv: json['uv']);
 }

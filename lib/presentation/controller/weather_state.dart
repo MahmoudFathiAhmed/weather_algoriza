@@ -31,7 +31,7 @@ class WeatherState extends Equatable {
       current: Current(
         condition: Condition(
             text: '',
-            icon: ''
+            icon: '//cdn.weatherapi.com/weather/64x64/day/113.png'
         ),
         feelsLikeC: 0.0,
         humidity: 0.0,
@@ -50,11 +50,12 @@ class WeatherState extends Equatable {
       forecast: Forecast(
           forecastDay: [
             ForecastDay(
+              date: '2022-09-07',
               day: Day(
                 uv: 0.0,
                 condition: Condition(
                     text: '',
-                    icon: ''
+                    icon: '//cdn.weatherapi.com/weather/64x64/day/113.png'
                 ),
                 avgHumidity: 0.0,
                 avgTempC: 0.0,
@@ -72,14 +73,14 @@ class WeatherState extends Equatable {
                 Hour(
                     condition: Condition(
                         text: '',
-                        icon: ''
+                        icon: '//cdn.weatherapi.com/weather/64x64/day/113.png'
                     ),
                     uv: 0.0,
                     windKph: 0.0,
                     tempC: 0.0,
                     humidity: 0.0,
                     feelslikeC: 0.0,
-                    time: ''
+                    time: '2022-09-07 05:00'
                 ),
               ],),
           ]
@@ -90,7 +91,7 @@ class WeatherState extends Equatable {
       current: Current(
         condition: Condition(
             text: '',
-            icon: ''
+            icon: '//cdn.weatherapi.com/weather/64x64/day/113.png'
         ),
         feelsLikeC: 0.0,
         humidity: 0.0,
@@ -109,11 +110,12 @@ class WeatherState extends Equatable {
       forecast: Forecast(
           forecastDay: [
             ForecastDay(
+              date: '2022-09-07',
               day: Day(
                 uv: 0.0,
                 condition: Condition(
                     text: '',
-                    icon: ''
+                    icon: '//cdn.weatherapi.com/weather/64x64/day/113.png'
                 ),
                 avgHumidity: 0.0,
                 avgTempC: 0.0,
@@ -131,14 +133,14 @@ class WeatherState extends Equatable {
                 Hour(
                     condition: Condition(
                         text: '',
-                        icon: ''
+                        icon: '//cdn.weatherapi.com/weather/64x64/day/113.png'
                     ),
                     uv: 0.0,
                     windKph: 0.0,
                     tempC: 0.0,
                     humidity: 0.0,
                     feelslikeC: 0.0,
-                    time: ''
+                    time: '2022-09-07 05:00'
                 ),
               ],),
           ]
