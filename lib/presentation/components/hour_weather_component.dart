@@ -37,7 +37,7 @@ class HourWeatherComponent extends StatelessWidget {
         Text(
           '$tempC°',
           style: TextStyle(
-            color: AppColors.myGrey,
+            color: AppColors.white,
           ),
         ),
         Row(

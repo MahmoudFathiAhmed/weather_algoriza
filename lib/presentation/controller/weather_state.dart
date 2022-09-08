@@ -4,25 +4,25 @@ class WeatherState extends Equatable {
   final Weather oneDayWeather;
   final RequestState oneDayState;
   final String oneDayMessage;
-  final Weather sevenDayWeather;
-  final RequestState sevenDayState;
-  final String sevenDayMessage;
+  final Weather sevenDaysWeather;
+  final RequestState sevenDaysState;
+  final String sevenDaysMessage;
 
   WeatherState copyWith({
     Weather? oneDayWeather,
     RequestState? oneDayState,
     String? oneDayMessage,
-    Weather? sevenDayWeather,
-    RequestState? sevenDayState,
-    String? sevenDayMessage,
+    Weather? sevenDaysWeather,
+    RequestState? sevenDaysState,
+    String? sevenDaysMessage,
   }) {
     return WeatherState(
       oneDayWeather: oneDayWeather ?? this.oneDayWeather,
       oneDayState: oneDayState ?? this.oneDayState,
       oneDayMessage: oneDayMessage ?? this.oneDayMessage,
-      sevenDayWeather: sevenDayWeather ?? this.sevenDayWeather,
-      sevenDayState: sevenDayState ?? this.sevenDayState,
-      sevenDayMessage: sevenDayMessage ?? this.sevenDayMessage,
+      sevenDaysWeather: sevenDaysWeather ?? this.sevenDaysWeather,
+      sevenDaysState: sevenDaysState ?? this.sevenDaysState,
+      sevenDaysMessage: sevenDaysMessage ?? this.sevenDaysMessage,
     );
   }
 
@@ -87,7 +87,7 @@ class WeatherState extends Equatable {
       ),),
     this.oneDayState = RequestState.loading,
     this.oneDayMessage = '',
-    this.sevenDayWeather = const Weather(
+    this.sevenDaysWeather = const Weather(
       current: Current(
         condition: Condition(
             text: '',
@@ -145,19 +145,18 @@ class WeatherState extends Equatable {
               ],),
           ]
       ),),
-    this.sevenDayState = RequestState.loading,
-    this.sevenDayMessage = '',
+    this.sevenDaysState = RequestState.loading,
+    this.sevenDaysMessage = '',
   });
-
   @override
   List<Object> get props =>
       [
         oneDayWeather,
         oneDayState,
         oneDayMessage,
-        sevenDayWeather,
-        sevenDayState,
-        sevenDayMessage,
+        sevenDaysWeather,
+        sevenDaysState,
+        sevenDaysMessage,
       ];
 
 }

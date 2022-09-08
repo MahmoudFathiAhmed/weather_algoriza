@@ -9,4 +9,4 @@ abstract class WeatherEvent extends Equatable {
 
 class GetOneDayWeatherEvent extends WeatherEvent {}
 
-class GetSevenDayWeatherEvent extends WeatherEvent {}
+class GetSevenDaysWeatherEvent extends WeatherEvent {}

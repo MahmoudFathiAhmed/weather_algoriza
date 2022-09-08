@@ -14,7 +14,7 @@ class ServiceLocator{
 
     //USE CASES
     sl.registerLazySingleton(() => GetOneDayWeatherUseCase(sl()));
-    sl.registerLazySingleton(() => GetSevenDayWeatherUseCase(sl()));
+    sl.registerLazySingleton(() => GetSevenDaysWeatherUseCase(sl()));
 
 
     // REPOSITORY

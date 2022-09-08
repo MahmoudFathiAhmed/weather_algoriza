@@ -7,9 +7,9 @@ class MySpacer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 20),
-      color: AppColors.myGrey.withOpacity(0.2),
-      height: .3,
+      margin: const EdgeInsets.symmetric(vertical: 22),
+      color: AppColors.myGrey.withOpacity(0.4),
+      height: .5,
     );
   }
 }

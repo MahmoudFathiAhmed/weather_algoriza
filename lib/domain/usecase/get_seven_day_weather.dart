@@ -4,9 +4,9 @@ import 'package:weather_algoriza/core/usecase/base_use_case.dart';
 import 'package:weather_algoriza/domain/entity/weather.dart';
 import 'package:weather_algoriza/domain/repository/base_weather_repository.dart';
 
-class GetSevenDayWeatherUseCase extends BaseUseCase<Weather, NoParameters >{
+class GetSevenDaysWeatherUseCase extends BaseUseCase<Weather, NoParameters >{
   final BaseWeatherRepository baseWeatherRepository;
-  GetSevenDayWeatherUseCase(this.baseWeatherRepository);
+  GetSevenDaysWeatherUseCase(this.baseWeatherRepository);
 
   @override
   Future<Either<Failure, Weather>> call(NoParameters parameters) async{

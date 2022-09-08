@@ -21,10 +21,10 @@ part 'weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   GetOneDayWeatherUseCase getOneDayWeatherUseCase;
-  GetSevenDayWeatherUseCase getSevenDayWeatherUseCase;
-  WeatherBloc(this.getOneDayWeatherUseCase,this.getSevenDayWeatherUseCase) : super(const WeatherState()) {
+  GetSevenDaysWeatherUseCase getSevenDaysWeatherUseCase;
+  WeatherBloc(this.getOneDayWeatherUseCase,this.getSevenDaysWeatherUseCase) : super(const WeatherState()) {
     on<GetOneDayWeatherEvent>(_getOneDayWeather);
-    on<GetSevenDayWeatherEvent>(_getSevenDayWeather);
+    on<GetSevenDaysWeatherEvent>(_getSevenDaysWeather);
   }
 
   FutureOr<void> _getOneDayWeather(GetOneDayWeatherEvent event, Emitter<WeatherState> emit) async{
@@ -41,17 +41,17 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
     );
   }
 
-  FutureOr<void> _getSevenDayWeather(GetSevenDayWeatherEvent event, Emitter<WeatherState> emit) async{
-    final result = await getSevenDayWeatherUseCase(const NoParameters());
+  FutureOr<void> _getSevenDaysWeather(GetSevenDaysWeatherEvent event, Emitter<WeatherState> emit) async{
+    final result = await getSevenDaysWeatherUseCase(const NoParameters());
     result.fold(
           (l) =>
           emit(state.copyWith(
-            sevenDayState: RequestState.error,
-            sevenDayMessage: l.message,
+            sevenDaysState: RequestState.error,
+            sevenDaysMessage: l.message,
           )),
           (r) =>
           emit(state.copyWith(
-              sevenDayWeather: r, sevenDayState: RequestState.loaded)),
+              sevenDaysWeather: r, sevenDaysState: RequestState.loaded)),
     );
   }
 }
