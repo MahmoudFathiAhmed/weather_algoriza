@@ -17,9 +17,9 @@
   - flutter_svg.
   - flutter_native_splash: ^2.2.9
   - flutter_launcher_icons: ^0.10.0
-
-
-This project is coded with clean architechture
+## Api used in this app
+  - https://api.weatherapi.com/
+## This project is coded with clean architechture
 
 ## Screenshots
 
