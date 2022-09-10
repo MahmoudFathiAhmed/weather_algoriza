@@ -17,7 +17,7 @@ class AppRoutes{
   static Route? onGenerateRoute(RouteSettings routeSettings){
     switch(routeSettings.name){
       case Routes.initialRoute: 
-        return MaterialPageRoute(builder: (context)=>const MainScreen());
+        return MaterialPageRoute(builder: (context)=>const MainScreen(location: 'Cairo',));
       case Routes.settingsRoute:
         return MaterialPageRoute(builder: (context)=>const SettingsScreen());
       case Routes.contactUsRoute:

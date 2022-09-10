@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:weather_algoriza/core/routes/app_routes.dart';
+import 'package:weather_algoriza/core/services/service_locator.dart';
 import 'package:weather_algoriza/core/utils/app_colors.dart';
 import 'package:weather_algoriza/core/utils/app_strings.dart';
 import 'package:weather_algoriza/core/utils/values_manager.dart';
 import 'package:weather_algoriza/presentation/components/default_%20button.dart';
 import 'package:weather_algoriza/presentation/controller/Theme/theme_cubit.dart';
+import 'package:weather_algoriza/presentation/controller/weather_bloc.dart';
+import 'package:weather_algoriza/presentation/screens/main_screen.dart';
 
 class SideMenu extends StatelessWidget {
   final String headerImage;
@@ -21,6 +25,11 @@ class SideMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     ThemeCubit theme = BlocProvider.of<ThemeCubit>(context, listen: false);
+    return BlocProvider(
+  create: (context) => sl<WeatherBloc>()..add(const GetOneDayWeatherEvent('Alexandria'))
+    ..add(const GetSevenDaysWeatherEvent('Giza')),
+  child: BlocBuilder<WeatherBloc, WeatherState>(
+  builder: (context, state) {
     return Drawer(
       width: width,
       shape:
@@ -39,74 +48,86 @@ class SideMenu extends StatelessWidget {
               DrawerListTile(
                 title: AppStrings.favouriteLocation,
                 icon: Icons.star,
-                press: () {},
+                press: () {
+                  Navigator.pushNamed(context, Routes.favouritesRoute);
+                },
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  //WRAP WITH THEME
-                  Theme(
-                    data: ThemeData(
-                        iconTheme: IconThemeData(
-                          color: AppColors.offWhite,
-                          size: AppSize.s18,
-                        )
+              InkWell(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MainScreen(location: 'Alexandria')));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //WRAP WITH THEME
+                    Theme(
+                      data: ThemeData(
+                          iconTheme: IconThemeData(
+                            color: AppColors.myDarkBlue,
+                            size: AppSize.s18,
+                          )
+                      ),
+                      child: const Icon(
+                        Icons.location_on,
+                      ),
                     ),
-                    child: const Icon(
-                      Icons.location_on,
+                    const SizedBox(width: AppSize.s5),
+                    Text(
+                      'Alexandria'.toUpperCase(),
+                      style: Theme.of(context).textTheme.headlineSmall,
                     ),
-                  ),
-                  const SizedBox(width: AppSize.s5),
-                  Text(
-                    'Ashmun'.toUpperCase(),
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  const SizedBox(width: AppSize.s60),
-                  CircleAvatar(
-                    backgroundColor: AppColors.myAmber,
-                    radius: AppSize.s8,
-                  ),
-                  const SizedBox(width: AppSize.s5),
-                  Text(
-                    '38°',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ],
+                    const SizedBox(width: AppSize.s60),
+                    CircleAvatar(
+                      backgroundColor: AppColors.myAmber,
+                      radius: AppSize.s8,
+                    ),
+                    const SizedBox(width: AppSize.s5),
+                    Text(
+                      '${state.oneDayWeather.current.tempC}°',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                  ],
+                ),
               ),
               DrawerListTile(
                 title: AppStrings.otherLocations,
                 icon: Icons.add_location_outlined,
                 press: () {},
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Theme(
-                    data: ThemeData(
-                      iconTheme: IconThemeData(
-                        color: AppColors.offWhite,
-                        size: AppSize.s18,
-                      )
+              InkWell(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MainScreen(location: 'Giza')));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Theme(
+                      data: ThemeData(
+                        iconTheme: IconThemeData(
+                          color: AppColors.myDarkBlue,
+                          size: AppSize.s18,
+                        )
+                      ),
+                      child: const Icon(
+                        Icons.location_on,),
                     ),
-                    child: const Icon(
-                      Icons.location_on,),
-                  ),
-                  const SizedBox(width: AppSize.s5),
-                  Text(
-                    'Ashmun'.toUpperCase(),
-                    style: Theme.of(context).textTheme.headlineSmall,
-                  ),
-                  const SizedBox(width: AppSize.s60),
-                  CircleAvatar(
-                    backgroundColor: AppColors.myAmber,
-                    radius: AppSize.s8,
-                  ),
-                  const SizedBox(width: AppSize.s5),
-                  Text(
-                    '38°',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                ],
+                    const SizedBox(width: AppSize.s5),
+                    Text(
+                      'Giza'.toUpperCase(),
+                      style: Theme.of(context).textTheme.headlineSmall,
+                    ),
+                    const SizedBox(width: AppSize.s60),
+                    CircleAvatar(
+                      backgroundColor: AppColors.myAmber,
+                      radius: AppSize.s8,
+                    ),
+                    const SizedBox(width: AppSize.s5),
+                    Text(
+                      '${state.sevenDaysWeather.current.tempC}°',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: AppSize.s10,),
               DefaultButton(
@@ -141,6 +162,9 @@ class SideMenu extends StatelessWidget {
         ),
       ),
     );
+  },
+),
+);
   }
 }
 

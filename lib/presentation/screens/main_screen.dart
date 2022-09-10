@@ -15,14 +15,15 @@ import 'package:weather_algoriza/presentation/components/week_weather_component.
 import 'package:weather_algoriza/presentation/controller/weather_bloc.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({Key? key}) : super(key: key);
+  final String location;
+  const MainScreen({Key? key, required this.location}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => sl<WeatherBloc>()
-        ..add(const GetOneDayWeatherEvent('Cairo'))
-        ..add(const GetSevenDaysWeatherEvent('Cairo')),
+        ..add(GetOneDayWeatherEvent(location))
+        ..add(GetSevenDaysWeatherEvent(location)),
       child: BlocBuilder<WeatherBloc, WeatherState>(
         builder: (context, state) {
           return Scaffold(
