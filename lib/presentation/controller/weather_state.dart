@@ -30,123 +30,123 @@ class WeatherState extends Equatable {
     this.oneDayWeather = const Weather(
       current: Current(
         condition: Condition(
-            text: '',
-            icon: '//cdn.weatherapi.com/weather/64x64/day/113.png'
+            text: AppStrings.emptyString,
+            icon: AppStrings.defaultIcon
         ),
-        feelsLikeC: 0.0,
-        humidity: 0.0,
-        lastUpdated: '',
-        tempC: 0.0,
-        uv: 0.0,
-        windKph: 0.0,
+        feelsLikeC: AppSize.s0,
+        humidity: AppSize.s0,
+        lastUpdated: AppStrings.emptyString,
+        tempC: AppSize.s0,
+        uv: AppSize.s0,
+        windKph: AppSize.s0,
       ),
       location: Location(
-        name: '',
-        lat: 0.0,
-        localtime: '',
-        lon: 0.0,
-        region: '',
+        name: AppStrings.emptyString,
+        lat: AppSize.s0,
+        localtime: AppStrings.emptyString,
+        lon: AppSize.s0,
+        region: AppStrings.emptyString,
       ),
       forecast: Forecast(
           forecastDay: [
             ForecastDay(
-              date: '2022-09-07',
+              date: AppStrings.defaultDate,
               day: Day(
-                uv: 0.0,
+                uv: AppSize.s0,
                 condition: Condition(
-                    text: '',
-                    icon: '//cdn.weatherapi.com/weather/64x64/day/113.png'
+                    text: AppStrings.emptyString,
+                    icon: AppStrings.defaultIcon
                 ),
-                avgHumidity: 0.0,
-                avgTempC: 0.0,
-                maxTempC: 0.0,
-                maxWindKph: 0.0,
-                minTempC: 0.0,
+                avgHumidity: AppSize.s0,
+                avgTempC: AppSize.s0,
+                maxTempC: AppSize.s0,
+                maxWindKph: AppSize.s0,
+                minTempC: AppSize.s0,
               ),
               astro: Astro(
-                moonrise: '',
-                moonset: '',
-                sunrise: '',
-                sunset: '',
+                moonrise: AppStrings.emptyString,
+                moonset: AppStrings.emptyString,
+                sunrise: AppStrings.emptyString,
+                sunset: AppStrings.emptyString,
               ),
               hour: [
                 Hour(
                     condition: Condition(
-                        text: '',
-                        icon: '//cdn.weatherapi.com/weather/64x64/day/113.png'
+                        text: AppStrings.emptyString,
+                        icon: AppStrings.defaultIcon
                     ),
-                    uv: 0.0,
-                    windKph: 0.0,
-                    tempC: 0.0,
-                    humidity: 0.0,
-                    feelslikeC: 0.0,
-                    time: '2022-09-07 05:00'
+                    uv: AppSize.s0,
+                    windKph: AppSize.s0,
+                    tempC: AppSize.s0,
+                    humidity: AppSize.s0,
+                    feelslikeC: AppSize.s0,
+                    time: AppStrings.defaultTime
                 ),
               ],),
           ]
       ),),
     this.oneDayState = RequestState.loading,
-    this.oneDayMessage = '',
+    this.oneDayMessage = AppStrings.emptyString,
     this.sevenDaysWeather = const Weather(
       current: Current(
         condition: Condition(
-            text: '',
-            icon: '//cdn.weatherapi.com/weather/64x64/day/113.png'
+            text: AppStrings.emptyString,
+            icon: AppStrings.defaultIcon
         ),
-        feelsLikeC: 0.0,
-        humidity: 0.0,
-        lastUpdated: '',
-        tempC: 0.0,
-        uv: 0.0,
-        windKph: 0.0,
+        feelsLikeC: AppSize.s0,
+        humidity: AppSize.s0,
+        lastUpdated: AppStrings.emptyString,
+        tempC: AppSize.s0,
+        uv: AppSize.s0,
+        windKph: AppSize.s0,
       ),
       location: Location(
-        name: '',
-        lat: 0.0,
-        localtime: '',
-        lon: 0.0,
-        region: '',
+        name: AppStrings.emptyString,
+        lat: AppSize.s0,
+        localtime: AppStrings.emptyString,
+        lon: AppSize.s0,
+        region: AppStrings.emptyString,
       ),
       forecast: Forecast(
           forecastDay: [
             ForecastDay(
-              date: '2022-09-07',
+              date: AppStrings.defaultDate,
               day: Day(
-                uv: 0.0,
+                uv: AppSize.s0,
                 condition: Condition(
-                    text: '',
-                    icon: '//cdn.weatherapi.com/weather/64x64/day/113.png'
+                    text: AppStrings.emptyString,
+                    icon: AppStrings.defaultIcon
                 ),
-                avgHumidity: 0.0,
-                avgTempC: 0.0,
-                maxTempC: 0.0,
-                maxWindKph: 0.0,
-                minTempC: 0.0,
+                avgHumidity: AppSize.s0,
+                avgTempC: AppSize.s0,
+                maxTempC: AppSize.s0,
+                maxWindKph: AppSize.s0,
+                minTempC: AppSize.s0,
               ),
               astro: Astro(
-                moonrise: '',
-                moonset: '',
-                sunrise: '',
-                sunset: '',
+                moonrise: AppStrings.emptyString,
+                moonset: AppStrings.emptyString,
+                sunrise: AppStrings.emptyString,
+                sunset: AppStrings.emptyString,
               ),
               hour: [
                 Hour(
                     condition: Condition(
-                        text: '',
-                        icon: '//cdn.weatherapi.com/weather/64x64/day/113.png'
+                        text: AppStrings.emptyString,
+                        icon: AppStrings.defaultIcon
                     ),
-                    uv: 0.0,
-                    windKph: 0.0,
-                    tempC: 0.0,
-                    humidity: 0.0,
-                    feelslikeC: 0.0,
-                    time: '2022-09-07 05:00'
+                    uv: AppSize.s0,
+                    windKph: AppSize.s0,
+                    tempC: AppSize.s0,
+                    humidity: AppSize.s0,
+                    feelslikeC: AppSize.s0,
+                    time: AppStrings.defaultTime
                 ),
               ],),
           ]
       ),),
     this.sevenDaysState = RequestState.loading,
-    this.sevenDaysMessage = '',
+    this.sevenDaysMessage = AppStrings.emptyString,
   });
   @override
   List<Object> get props =>

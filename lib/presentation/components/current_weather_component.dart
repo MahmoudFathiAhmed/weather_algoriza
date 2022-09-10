@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:weather_algoriza/core/utils/app_colors.dart';
+import 'package:weather_algoriza/core/utils/app_strings.dart';
+import 'package:weather_algoriza/core/utils/values_manager.dart';
 
 class CurrentWeatherComponent extends StatelessWidget {
   final String location;
@@ -36,87 +37,63 @@ class CurrentWeatherComponent extends StatelessWidget {
               children: [
                 Text(
                   location,
-                  style: TextStyle(
-                    color: AppColors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 30,
-                    letterSpacing: 4.0,
-                  ),
+                //DISPLAY SMALL
+                  style: Theme.of(context).textTheme.displaySmall,
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: AppSize.s10,
                 ),
                 Text(
-                  '$tempC \u2103',
+                  '$tempC ${AppStrings.degreeCelsiusSign}',
                   //or ALT+0176
-                  style: TextStyle(
-                    color: AppColors.myGrey,
-                    fontWeight: FontWeight.w300,
-                    fontSize: 34,
-                  ),
+                  //DISPLAY LARGE
+                  style: Theme.of(context).textTheme.displayLarge,
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: AppSize.s10,
                 ),
                 Text(
-                  '▲ $maxTemp°  ▼ $minTemp°',
+                  '${AppStrings.upArrow} $maxTemp${AppStrings.degreeSign}  ${AppStrings.downArrow} $minTemp${AppStrings.degreeSign}',
                   //or ALT+0176
-                  style: TextStyle(
-                    color: AppColors.myGrey,
-                    fontWeight: FontWeight.w500,
-                    fontSize: 18,
-                  ),
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(
-                  height: 10,
+                  height: AppSize.s10,
                 ),
               ],
             ),
             const SizedBox(
-              width: 10,
+              width: AppSize.s10,
             ),
             Column(
               children: [
-                CachedNetworkImage(imageUrl: 'https:$icon'),
+                CachedNetworkImage(imageUrl: '${AppStrings.https}$icon'),
                 const SizedBox(
-                  height: 10,
+                  height: AppSize.s10,
                 ),
                 Text(
                   weatherCondition.toUpperCase(), //or ALT+0176
-                  style: TextStyle(
-                    color: AppColors.myGrey,
-                    fontWeight: FontWeight.w300,
-                    fontSize: 34,
-                    letterSpacing: 5.0,
-                  ),
+                  //DISPLAY MEDIUM
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
               ],
             ),
           ],
         ),
         const SizedBox(
-          height: 10,
+          height: AppSize.s10,
         ),
         Text(
-          'feels like $feelsLike \u2103'.toUpperCase(), //or ALT+0176
-          style: TextStyle(
-            color: AppColors.myGrey,
-            fontWeight: FontWeight.w300,
-            fontSize: 24,
-            letterSpacing: 3.0,
-          ),
+          '${AppStrings.feelsLike} $feelsLike ${AppStrings.degreeCelsiusSign}'.toUpperCase(), //or ALT+0176
+          //HEADLINE MEDIUM
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
         const SizedBox(
-          height: 10,
+          height: AppSize.s10,
         ),
         Text(
-          'last updated $lastUpdated'.toUpperCase(), //or ALT+0176
-          style: TextStyle(
-            color: AppColors.myGrey,
-            fontWeight: FontWeight.w500,
-            fontSize: 10,
-            letterSpacing: 2.0,
-          ),
+          '${AppStrings.lastUpdated} $lastUpdated'.toUpperCase(), //or ALT+0176
+          style: Theme.of(context).textTheme.bodySmall,
         ),
       ],
     );

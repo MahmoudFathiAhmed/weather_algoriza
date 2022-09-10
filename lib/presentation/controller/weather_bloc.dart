@@ -2,8 +2,9 @@ import 'dart:async';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:weather_algoriza/core/usecase/base_use_case.dart';
+import 'package:weather_algoriza/core/utils/app_strings.dart';
 import 'package:weather_algoriza/core/utils/enums.dart';
+import 'package:weather_algoriza/core/utils/values_manager.dart';
 import 'package:weather_algoriza/domain/entity/astro.dart';
 import 'package:weather_algoriza/domain/entity/condition.dart';
 import 'package:weather_algoriza/domain/entity/current.dart';
@@ -28,7 +29,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   }
 
   FutureOr<void> _getOneDayWeather(GetOneDayWeatherEvent event, Emitter<WeatherState> emit) async{
-    final result = await getOneDayWeatherUseCase(const NoParameters(),);
+    final result = await getOneDayWeatherUseCase(OneDayWeatherParameters(location: event.location),);
     result.fold(
           (l) =>
           emit(state.copyWith(
@@ -42,7 +43,7 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
   }
 
   FutureOr<void> _getSevenDaysWeather(GetSevenDaysWeatherEvent event, Emitter<WeatherState> emit) async{
-    final result = await getSevenDaysWeatherUseCase(const NoParameters());
+    final result = await getSevenDaysWeatherUseCase(SevenDayWeatherParameters(location: event.location));
     result.fold(
           (l) =>
           emit(state.copyWith(

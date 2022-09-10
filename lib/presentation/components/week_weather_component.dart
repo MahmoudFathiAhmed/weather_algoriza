@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:weather_algoriza/core/utils/app_assets.dart';
 import 'package:weather_algoriza/core/utils/app_colors.dart';
+import 'package:weather_algoriza/core/utils/app_strings.dart';
+import 'package:weather_algoriza/core/utils/values_manager.dart';
 
 class WeekWeatherComponent extends StatelessWidget {
   final String day;
@@ -23,44 +25,39 @@ class WeekWeatherComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: AppPadding.p20),
       child: Row(
         children: [
           Text(
-            day.substring(5, 10),
-            style:
-                TextStyle(fontWeight: FontWeight.bold, color: AppColors.white),
+            day.substring(AppCount.c5, AppCount.c10),
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
           const SizedBox(
-            width: 67,
+            width: AppSize.s67,
           ),
           CachedNetworkImage(
-            imageUrl: 'https:$icon',
-            width: 38,
-            height: 38,
+            imageUrl: '${AppStrings.https}$icon',
+            width: AppSize.s38,
+            height: AppSize.s38,
           ),
           const SizedBox(
-            width: 6,
+            width: AppSize.s6,
           ),
           SvgPicture.asset(
             AppImages.humidityIc,
-            height: 22,
-            width: 22,
+            height: AppSize.s22,
+            width: AppSize.s22,
           ),
           Text(
-            '${humidity.toInt()}%',
-            style: TextStyle(
-              color: AppColors.myGrey,
-            ),
+            '${humidity.toInt()}${AppStrings.percent}',
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           const SizedBox(
-            width: 27,
+            width: AppSize.s27,
           ),
           Text(
-            '$maxTempC°  /  $minTempC°',
-            style: TextStyle(
-              color: AppColors.myGrey,
-            ),
+            '$maxTempC${AppStrings.degreeSign} ${AppStrings.splitter} $minTempC${AppStrings.degreeSign}',
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         ],
       ),

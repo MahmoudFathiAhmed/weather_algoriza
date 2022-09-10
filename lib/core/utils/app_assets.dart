@@ -8,4 +8,6 @@ class AppImages{
   static const String sunsetIc= "$imagePath/sunset.png";
   static const String uvIc= "$imagePath/uv.png";
   static const String windIc= "$imagePath/wind.png";
+  static const String weatherIc= "$imagePath/weather.png";
+  static const String appLogo= "$imagePath/app_logo.png";
 }

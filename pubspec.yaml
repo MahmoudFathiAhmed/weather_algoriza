@@ -29,6 +29,25 @@ dev_dependencies:
     sdk: flutter
 
   flutter_lints: ^2.0.1
+  flutter_native_splash: ^2.2.9
+  flutter_launcher_icons: ^0.10.0
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/app_logo.png"
+  min_sdk_android: 21 # android min sdk min:16, default 21
+
+flutter_native_splash:
+  color: "#000000"
+  image: assets/app_logo.png
+  android_gravity: center
+  android_12:
+    color: "#000000"
+    image: assets/app_logo.png
+  android: true
+  ios: true
+  web: true
 
 flutter:
 

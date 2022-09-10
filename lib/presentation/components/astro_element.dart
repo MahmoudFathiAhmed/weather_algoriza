@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_algoriza/core/utils/app_colors.dart';
+import 'package:weather_algoriza/core/utils/values_manager.dart';
 
 class AstroElement extends StatelessWidget {
   final String condition;
@@ -11,11 +12,11 @@ class AstroElement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(condition,style: TextStyle(color: AppColors.white),),
-        const SizedBox(height: 8,),
-        Image.asset(icon,height: 48, width: 48,),
-        const SizedBox(height: 8,),
-        Text(time,style: TextStyle(color: AppColors.myGrey),),
+        Text(condition,style: Theme.of(context).textTheme.titleSmall,),
+        const SizedBox(height: AppSize.s8,),
+        Image.asset(icon,height: AppSize.s48, width: AppSize.s48,),
+        const SizedBox(height: AppSize.s8,),
+        Text(time,style: Theme.of(context).textTheme.bodyLarge,),
       ],
     );
   }

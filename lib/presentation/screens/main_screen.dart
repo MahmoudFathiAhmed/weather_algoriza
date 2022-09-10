@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intl/intl.dart';
 import 'package:weather_algoriza/core/services/service_locator.dart';
 import 'package:weather_algoriza/core/utils/app_assets.dart';
-import 'package:weather_algoriza/core/utils/app_colors.dart';
+import 'package:weather_algoriza/core/utils/app_strings.dart';
+import 'package:weather_algoriza/core/utils/values_manager.dart';
 import 'package:weather_algoriza/presentation/components/astro_element.dart';
 import 'package:weather_algoriza/presentation/components/current_weather_component.dart';
 import 'package:weather_algoriza/presentation/components/hour_weather_component.dart';
 import 'package:weather_algoriza/presentation/components/info_element.dart';
 import 'package:weather_algoriza/presentation/components/my_spacer.dart';
+import 'package:weather_algoriza/presentation/components/side_menu.dart';
 import 'package:weather_algoriza/presentation/components/veritical_spacer.dart';
 import 'package:weather_algoriza/presentation/components/week_weather_component.dart';
 import 'package:weather_algoriza/presentation/controller/weather_bloc.dart';
@@ -21,35 +21,27 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => sl<WeatherBloc>()
-        ..add(GetOneDayWeatherEvent())
-        ..add(GetSevenDaysWeatherEvent()),
+        ..add(const GetOneDayWeatherEvent('Cairo'))
+        ..add(const GetSevenDaysWeatherEvent('Cairo')),
       child: BlocBuilder<WeatherBloc, WeatherState>(
         builder: (context, state) {
           return Scaffold(
-            backgroundColor: AppColors.black,
-            appBar: AppBar(
-              backgroundColor: AppColors.black,
-              elevation: 0,
-              leading: IconButton(
-                icon: Icon(
-                  Icons.menu,
-                  color: AppColors.myGrey,
-                ),
-                onPressed: () {},
-              ),
-            ),
+            drawer: const SideMenu(
+                headerImage: AppImages.weatherIc,
+                radius: AppSize.s15),
+            appBar: AppBar(),
             body: SingleChildScrollView(
               padding: const EdgeInsets.only(
-                  top: 40.0, left: 20, right: 20, bottom: 20),
+                  top: AppPadding.p40, left: AppPadding.p20, right: AppPadding.p20, bottom: AppPadding.p20),
               child: Column(
                 children: [
                   CurrentWeatherComponent(
                     location: state.oneDayWeather.location.name.toUpperCase(),
                     tempC: state.oneDayWeather.current.tempC,
                     maxTemp: state
-                        .oneDayWeather.forecast.forecastDay[0].day.maxTempC,
+                        .oneDayWeather.forecast.forecastDay[AppCount.c0].day.maxTempC,
                     minTemp: state
-                        .oneDayWeather.forecast.forecastDay[0].day.minTempC,
+                        .oneDayWeather.forecast.forecastDay[AppCount.c0].day.minTempC,
                     icon: state.oneDayWeather.current.condition.icon,
                     weatherCondition: state.oneDayWeather.current.condition.text
                         .toUpperCase(),
@@ -58,25 +50,25 @@ class MainScreen extends StatelessWidget {
                   ),
                   const MySpacer(),
                   SizedBox(
-                    height: 122,
+                    height: AppSize.s122,
                     child: ListView.separated(
                       physics: const BouncingScrollPhysics(),
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) => HourWeatherComponent(
-                        hour: state.oneDayWeather.forecast.forecastDay[0]
+                        hour: state.oneDayWeather.forecast.forecastDay[AppCount.c0]
                             .hour[index].time,
-                        icon: state.oneDayWeather.forecast.forecastDay[0]
+                        icon: state.oneDayWeather.forecast.forecastDay[AppCount.c0]
                             .hour[index].condition.icon,
-                        tempC: state.oneDayWeather.forecast.forecastDay[0]
+                        tempC: state.oneDayWeather.forecast.forecastDay[AppCount.c0]
                             .hour[index].tempC,
-                        humidity: state.oneDayWeather.forecast.forecastDay[0]
+                        humidity: state.oneDayWeather.forecast.forecastDay[AppCount.c0]
                             .hour[index].humidity,
                       ),
                       separatorBuilder: (context, index) => const SizedBox(
-                        width: 20,
+                        width: AppSize.s20,
                       ),
                       itemCount: state
-                          .oneDayWeather.forecast.forecastDay[0].hour.length,
+                          .oneDayWeather.forecast.forecastDay[AppCount.c0].hour.length,
                     ),
                   ),
                   const MySpacer(),
@@ -84,30 +76,36 @@ class MainScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       AstroElement(
-                        condition: 'sunrise',
+                        condition: AppStrings.sunrise,
                         icon: AppImages.sunriseIc,
-                        time: state.oneDayWeather.forecast.forecastDay[0].astro
+                        time: state.oneDayWeather.forecast.forecastDay[AppCount.c0].astro
                             .sunrise,
                       ),
-                      const VerticalSpacer(margin: 12,),
+                      const VerticalSpacer(
+                        margin: AppMargin.m12,
+                      ),
                       AstroElement(
-                        condition: 'sunset',
+                        condition: AppStrings.sunset,
                         icon: AppImages.sunsetIc,
                         time: state
-                            .oneDayWeather.forecast.forecastDay[0].astro.sunset,
+                            .oneDayWeather.forecast.forecastDay[AppCount.c0].astro.sunset,
                       ),
-                      const VerticalSpacer(margin: 12,),
+                      const VerticalSpacer(
+                        margin: AppMargin.m12,
+                      ),
                       AstroElement(
-                        condition: 'moonrise',
+                        condition: AppStrings.moonrise,
                         icon: AppImages.moonriseIc,
-                        time: state.oneDayWeather.forecast.forecastDay[0].astro
+                        time: state.oneDayWeather.forecast.forecastDay[AppCount.c0].astro
                             .moonrise,
                       ),
-                      const VerticalSpacer(margin: 12,),
+                      const VerticalSpacer(
+                        margin: AppMargin.m12,
+                      ),
                       AstroElement(
-                        condition: 'moonset',
+                        condition: AppStrings.moonset,
                         icon: AppImages.moonsetIc,
-                        time: state.oneDayWeather.forecast.forecastDay[0].astro
+                        time: state.oneDayWeather.forecast.forecastDay[AppCount.c0].astro
                             .moonset,
                       ),
                     ],
@@ -117,27 +115,34 @@ class MainScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       InfoElement(
-                        info: 'uv',
+                        info: AppStrings.uv,
                         icon: AppImages.uvIc,
-                        value: '${state.oneDayWeather.forecast.forecastDay[0].day.uv.toInt()}',
+                        value:
+                            '${state.oneDayWeather.forecast.forecastDay[AppCount.c0].day.uv.toInt()}',
                       ),
-                      const VerticalSpacer(margin: 16,),
+                      const VerticalSpacer(
+                        margin: AppMargin.m16,
+                      ),
                       InfoElement(
-                        info: 'wind',
+                        info: AppStrings.wind,
                         icon: AppImages.windIc,
-                        value: '${state.oneDayWeather.forecast.forecastDay[0].day.maxWindKph} km/h',
+                        value:
+                            '${state.oneDayWeather.forecast.forecastDay[AppCount.c0].day.maxWindKph} km/h',
                       ),
-                      const VerticalSpacer(margin: 16,),
+                      const VerticalSpacer(
+                        margin: AppMargin.m16,
+                      ),
                       InfoElement(
-                        info: 'humidity',
+                        info: AppStrings.humidity,
                         icon: AppImages.humidityPngIc,
-                        value: '${state.oneDayWeather.forecast.forecastDay[0].day.avgHumidity}%',
+                        value:
+                            '${state.oneDayWeather.forecast.forecastDay[AppCount.c0].day.avgHumidity}%',
                       ),
                     ],
                   ),
                   const MySpacer(),
                   SizedBox(
-                    height: 328,
+                    height: AppSize.s328,
                     child: ListView.separated(
                         physics: const NeverScrollableScrollPhysics(),
                         scrollDirection: Axis.vertical,
@@ -156,7 +161,7 @@ class MainScreen extends StatelessWidget {
                                   .forecastDay[index].day.minTempC,
                             ),
                         separatorBuilder: (context, index) => const SizedBox(
-                              height: 10,
+                              height: AppSize.s10,
                             ),
                         itemCount:
                             state.sevenDaysWeather.forecast.forecastDay.length),

@@ -4,6 +4,8 @@ import 'package:weather_algoriza/core/error/failure.dart';
 import 'package:weather_algoriza/data/datasource/weather_remote_datasource.dart';
 import 'package:weather_algoriza/domain/entity/weather.dart';
 import 'package:weather_algoriza/domain/repository/base_weather_repository.dart';
+import 'package:weather_algoriza/domain/usecase/get_one_day_Weather.dart';
+import 'package:weather_algoriza/domain/usecase/get_seven_day_weather.dart';
 
 class WeatherRepository extends BaseWeatherRepository{
   final BaseWeatherRemoteDataSource baseWeatherRemoteDataSource;
@@ -11,8 +13,8 @@ class WeatherRepository extends BaseWeatherRepository{
   WeatherRepository(this.baseWeatherRemoteDataSource);
 
   @override
-  Future<Either<Failure, Weather>> getOneDayWeather() async{
-    final result  = await baseWeatherRemoteDataSource.getOneDayWeather();
+  Future<Either<Failure, Weather>> getOneDayWeather(OneDayWeatherParameters parameters) async{
+    final result  = await baseWeatherRemoteDataSource.getOneDayWeather(parameters);
     try {
       return Right(result);
     } on ServerException catch (failure) {
@@ -21,8 +23,8 @@ class WeatherRepository extends BaseWeatherRepository{
   }
 
   @override
-  Future<Either<Failure, Weather>> getSevenDaysWeather() async{
-    final result  = await baseWeatherRemoteDataSource.getSevenDaysWeather();
+  Future<Either<Failure, Weather>> getSevenDaysWeather(SevenDayWeatherParameters parameters) async{
+    final result  = await baseWeatherRemoteDataSource.getSevenDaysWeather(parameters);
     try {
       return Right(result);
     } on ServerException catch (failure) {
