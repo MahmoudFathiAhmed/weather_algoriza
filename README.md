@@ -3,7 +3,7 @@
 - get weather details for specific location 
 - today weather
 - weather condition every hours
-- weather informations (humidity, wind and uv)
+- weather information (humidity, wind and uv)
 - all week weather
 
 ## packages
